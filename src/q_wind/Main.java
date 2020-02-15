@@ -1716,7 +1716,7 @@ public class Main extends javax.swing.JFrame {
     
     public void reset_cast(){
     try {
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `ad_tbl` WHERE 1-1000");
+            pst = conn.prepareStatement("DELETE FROM `ad_tbl` WHERE 1-1000");
             pst.executeUpdate();
             String sql = "alter table ad_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
