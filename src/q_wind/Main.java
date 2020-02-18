@@ -44,7 +44,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             rate_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -78,7 +78,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -101,7 +101,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -124,7 +124,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -147,7 +147,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -170,7 +170,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -193,7 +193,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -216,7 +216,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -239,7 +239,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -262,7 +262,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -285,7 +285,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -308,7 +308,7 @@ public class Main extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             q_table.setModel(DbUtils.resultSetToTableModel(rs));
-
+            pst.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -327,6 +327,7 @@ public class Main extends javax.swing.JFrame {
         while(rs.next()){
             role_cb.addItem(rs.getString("Role"));
         }
+        pst.close();
     }catch (Exception e) {
     }
     }
@@ -351,6 +352,7 @@ public class Main extends javax.swing.JFrame {
             else{
             JOptionPane.showMessageDialog(null, "Incorrect Username or Password!");
             }
+            pst.close();
             }
             catch (SQLException x) {
             }
@@ -394,6 +396,7 @@ public class Main extends javax.swing.JFrame {
             else{
             JOptionPane.showMessageDialog(null, "Incorrect Username or Password!");
             }
+            pst.close();
             }
             catch (SQLException x) {
             }
@@ -429,6 +432,7 @@ public class Main extends javax.swing.JFrame {
             else{
             JOptionPane.showMessageDialog(null, "Incorrect Username or Password!");
             }
+            pst.close();
             }
             catch (SQLException x) {
             }
@@ -464,6 +468,7 @@ public class Main extends javax.swing.JFrame {
             else{
             JOptionPane.showMessageDialog(null, "Incorrect Username or Password!");
             }
+            pst.close();
             }
             catch (SQLException x) {
             }
@@ -516,6 +521,7 @@ public class Main extends javax.swing.JFrame {
             else{
             JOptionPane.showMessageDialog(null, "Incorrect Username or Password!");
             }
+            pst.close();
             }
             catch (SQLException x) {
             }
@@ -1029,6 +1035,7 @@ public class Main extends javax.swing.JFrame {
             
             test.setText(name);
             }
+            pst.close();
             }
             catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -1092,7 +1099,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1117,7 +1124,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1142,7 +1149,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1168,7 +1175,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1193,7 +1200,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1218,7 +1225,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1244,7 +1251,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1269,7 +1276,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1294,7 +1301,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1319,7 +1326,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1344,7 +1351,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1369,7 +1376,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1393,7 +1400,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1417,7 +1424,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1442,7 +1449,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1467,7 +1474,7 @@ public class Main extends javax.swing.JFrame {
                     int del = pst.executeUpdate();
                     if (del > 0) {
                     }
-            
+                    pst.close();
                     }
                     catch (Exception e) {
                             JOptionPane.showMessageDialog(null, e);
@@ -1522,6 +1529,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(2, date.getText());
                     pst.setString(3, time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
         }
@@ -1554,6 +1562,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1569,6 +1578,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1584,6 +1594,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1599,6 +1610,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1614,6 +1626,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1629,6 +1642,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1644,6 +1658,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1659,6 +1674,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1674,6 +1690,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1689,6 +1706,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1704,6 +1722,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, date.getText());
                     pst.setString(4, prio.getText()+time.getText());
                     pst.execute();
+                    pst.close();
                     } catch (Exception e){
                     }
                     sb_num.setText("#####");
@@ -1717,10 +1736,10 @@ public class Main extends javax.swing.JFrame {
     public void reset_cast(){
     try {
             pst = conn.prepareStatement("DELETE FROM `ad_tbl` WHERE 1-1000");
-            pst.executeUpdate();
+            //pst.executeUpdate();
             String sql = "alter table ad_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
-            pst.execute();
+            //pst.execute();
             
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `ad_ticket` WHERE 1-1000");
             pst.executeUpdate();
