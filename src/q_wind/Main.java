@@ -564,6 +564,7 @@ public class Main extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         rate_table = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         fwd = new javax.swing.JLabel();
         prio = new javax.swing.JLabel();
@@ -935,6 +936,8 @@ public class Main extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(rate_table);
 
+        jTextField1.setText("Search");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -943,11 +946,17 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1736,238 +1745,203 @@ public class Main extends javax.swing.JFrame {
     public void reset_cast(){
     try {
             pst = conn.prepareStatement("DELETE FROM `ad_tbl` WHERE 1-1000");
-            //pst.executeUpdate();
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `ad_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `assessment_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `asse_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `cashier_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `cash_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_ad_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_asse1_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_asse2_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_cash1_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_cash2_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_enco1_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_enco2_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_enco3_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_esd_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_fd_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_marn_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_opm_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_ppd_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_psd_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `dis_term_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `encoding_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `enco_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `esd_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `esd_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `fd_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `fd_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `marine_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `marn_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `opm_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `opm_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `ppd_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `ppd_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `priority_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `prio_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `psd_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `psd_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `terminal_tbl` WHERE 1-1000");
+            pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `term_ticket` WHERE 1-1000");
+            pst.executeUpdate();
+            
             String sql = "alter table ad_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
-            //pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `ad_ticket` WHERE 1-1000");
-            pst.executeUpdate();
+            pst.execute();
             String sql1 = "alter table ad_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql1);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `assessment_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql2 = "alter table assessment_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql2);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `asse_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql3 = "alter table asse_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql3);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `cashier_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql4 = "alter table cashier_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql4);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `cash_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql5 = "alter table cash_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql5);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_ad_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql6 = "alter table dis_ad_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql6);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_asse1_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql7 = "alter table dis_asse1_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql7);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_asse2_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql8 = "alter table dis_asse2_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql8);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_cash1_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql9 = "alter table dis_cash1_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql9);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_cash2_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql10 = "alter table dis_cash2_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql10);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_enco1_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql11 = "alter table dis_enco1_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql11);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_enco2_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql12 = "alter table dis_enco2_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql12);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_enco3_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql13 = "alter table dis_enco3_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql13);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_esd_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql14 = "alter table dis_esd_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql14);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_fd_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql15 = "alter table dis_fd_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql15);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_marn_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql16 = "alter table dis_marn_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql16);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_opm_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql17 = "alter table dis_opm_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql17);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_ppd_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql18 = "alter table dis_ppd_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql18);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_psd_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql19 = "alter table dis_psd_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql19);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `dis_term_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql20 = "alter table dis_term_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql20);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `encoding_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql21 = "alter table encoding_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql21);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `enco_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql22 = "alter table enco_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql22);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `esd_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql23 = "alter table esd_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql23);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `esd_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql24 = "alter table esd_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql24);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `fd_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql25 = "alter table fd_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql25);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `fd_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql26 = "alter table fd_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql26);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `marine_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql27 = "alter table marine_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql27);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `marn_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql28 = "alter table marn_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql28);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `opm_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql29 = "alter table opm_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql29);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `opm_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql30 = "alter table opm_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql30);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `ppd_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql31 = "alter table ppd_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql31);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `ppd_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql32 = "alter table ppd_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql32);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `priority_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql33 = "alter table priority_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql33);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `prio_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql34 = "alter table prio_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql34);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `psd_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql35 = "alter table psd_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql35);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `psd_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql36 = "alter table psd_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql36);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `terminal_tbl` WHERE 1-1000");
-            pst.executeUpdate();
             String sql37 = "alter table terminal_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql37);
             pst.execute();
-            
-            pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM `term_ticket` WHERE 1-1000");
-            pst.executeUpdate();
             String sql38 = "alter table term_ticket AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql38);
             pst.execute();
+            
+            pst.close();
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -2033,6 +2007,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField password;
     private javax.swing.JLabel prio;
     private javax.swing.JLabel q_client;
