@@ -12,10 +12,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -26,6 +30,7 @@ public class Main extends javax.swing.JFrame {
     Connection conn;
     PreparedStatement pst;
     ResultSet rs;
+    
     /**
      * Creates new form Main
      */
@@ -35,6 +40,9 @@ public class Main extends javax.swing.JFrame {
         currentdate();
         role_list();
         rate_ref();
+        reset_time();
+        Alarmtest ac=new Alarmtest();
+        ac.checkAlarm(24,00);
     }
     
     public void rate_ref(){
@@ -58,6 +66,7 @@ public class Main extends javax.swing.JFrame {
                 Date d = new Date();
                 SimpleDateFormat s = new SimpleDateFormat("HH:mm:ss");
                 time.setText(s.format(d));
+                timerforreset.setText(s.format(d));
 
                 SimpleDateFormat st = new SimpleDateFormat("MM/dd/yyyy");
                 date.setText(st.format(d));
@@ -345,7 +354,6 @@ public class Main extends javax.swing.JFrame {
             
             Login.setVisible(false);
             Sadmin.setVisible(true);
-            
             role_cb.setSelectedItem("--SELECT ROLE--");
             password.setText("");
             }
@@ -528,6 +536,11 @@ public class Main extends javax.swing.JFrame {
         }
     }
     
+     public void reset_time(){
+         
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -561,6 +574,8 @@ public class Main extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         reset = new javax.swing.JButton();
+        admintime = new javax.swing.JLabel();
+        timerforreset = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         rate_table = new javax.swing.JTable();
@@ -892,19 +907,27 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        admintime.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        admintime.setForeground(new java.awt.Color(51, 51, 255));
+        admintime.setText("New Rate");
+
+        timerforreset.setText("14:20:01");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(reset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rate_tf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reset, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rate_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(admintime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(timerforreset))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -912,6 +935,10 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(admintime)
+                .addGap(41, 41, 41)
+                .addComponent(timerforreset, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -937,6 +964,16 @@ public class Main extends javax.swing.JFrame {
         jScrollPane2.setViewportView(rate_table);
 
         jTextField1.setText("Search");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1559,6 +1596,31 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_resetActionPerformed
 
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        try {
+            
+           String sql = "SELECT *"
+                    + " FROM exchange_tbl WHERE "
+                    + "ID like ? or Rate like ? or Date like ? or Time like ?";
+
+            pst = (com.mysql.jdbc.PreparedStatement) (java.sql.PreparedStatement) conn.prepareStatement(sql);
+            pst.setString(1, "%" + jTextField1.getText() + "%");
+            pst.setString(2, "%" + jTextField1.getText() + "%");
+            pst.setString(3, "%" + jTextField1.getText() + "%");
+            pst.setString(4, "%" + jTextField1.getText() + "%");
+            
+            rs = (ResultSet) pst.executeQuery();
+            rate_table.setModel(DbUtils.resultSetToTableModel(rs));
+            pst.close();
+        } catch (SQLException ex) {
+            JOptionPane.showConfirmDialog(null, ex);
+        }
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
+
     public void fwd_cast(){
             switch (fwd.getText()) {
             
@@ -1951,6 +2013,27 @@ public class Main extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public class Alarmtest {
+    public void checkAlarm(final int a, final int b){
+        Thread t=new Thread(){
+            public void run(){
+                int wl=0;
+                while(wl==0){
+                    Calendar c=new GregorianCalendar();
+                    int hour=c.get(Calendar.HOUR_OF_DAY);
+                    int mins=c.get(Calendar.MINUTE);
+                    if(a==hour&&b==mins){
+                        reset_cast();
+                        break;
+                    }
+                }
+            }
+        };
+        t.setPriority(Thread.MIN_PRIORITY);
+        t.start();
+    }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1982,11 +2065,30 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
+    
+        @FunctionalInterface
+public interface SimpleDocumentListener extends DocumentListener {
+    void update(DocumentEvent e);
+
+    @Override
+    default void insertUpdate(DocumentEvent e) {
+       //update(e);
+    }
+    @Override
+    default void removeUpdate(DocumentEvent e) {
+       update(e);
+    }
+    @Override
+    default void changedUpdate(DocumentEvent e) {
+        //update(e);
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Login;
     private javax.swing.JPanel Main;
     private javax.swing.JPanel Sadmin;
+    private javax.swing.JLabel admintime;
     private javax.swing.JLabel date;
     private javax.swing.JLabel fwd;
     private javax.swing.JButton fwd_btn;
@@ -2019,6 +2121,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel sb_num;
     private javax.swing.JLabel test;
     private javax.swing.JLabel time;
+    private javax.swing.JTextField timerforreset;
     private javax.swing.JLabel window;
     // End of variables declaration//GEN-END:variables
 }
