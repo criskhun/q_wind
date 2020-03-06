@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -40,9 +41,9 @@ public class Main extends javax.swing.JFrame {
         currentdate();
         role_list();
         rate_ref();
-        reset_time();
         Alarmtest ac=new Alarmtest();
-        ac.checkAlarm(24,00);
+        ac.checkAlarm(00,00);
+        
     }
     
     public void rate_ref(){
@@ -536,8 +537,23 @@ public class Main extends javax.swing.JFrame {
         }
     }
     
-     public void reset_time(){
-         
+     public void intohistory(){
+         try{
+         String sql1 = "Insert into history_tbl (Window, Queu_Num, Client, Date, Time) values (?,?,?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql1);
+                    pst.setString(1, window.getText());
+                    pst.setString(2, sb_num.getText());
+                    pst.setString(3, q_client.getText());
+                    pst.setString(4, date.getText());
+                    pst.setString(5, time.getText());
+
+                    pst.execute();
+                    pst.close();
+         }
+         catch (SQLException x){
+             JOptionPane.showMessageDialog(null, x);
+         }
     }
     
     
@@ -580,6 +596,20 @@ public class Main extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         rate_table = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
+        history = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         fwd = new javax.swing.JLabel();
         prio = new javax.swing.JLabel();
@@ -667,8 +697,10 @@ public class Main extends javax.swing.JFrame {
         jPanel1.add(Login, "card3");
 
         Main.setBackground(new java.awt.Color(255, 255, 255));
+        Main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         q_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -683,115 +715,59 @@ public class Main extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(q_table);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 1333, -1));
+
+        Main.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 1335, -1));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("DATE");
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(785, 33, 255, 43));
 
         window.setFont(new java.awt.Font("Arial Black", 1, 60)); // NOI18N
         window.setForeground(new java.awt.Color(51, 153, 255));
         window.setText("Window");
+        jPanel5.add(window, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 22, 759, 69));
 
         sb_num.setFont(new java.awt.Font("Arial Black", 1, 55)); // NOI18N
         sb_num.setForeground(new java.awt.Color(255, 0, 0));
         sb_num.setText("####");
+        jPanel5.add(sb_num, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 82, 356, 98));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 153, 255));
         jLabel4.setText("Serving Number:");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 105, -1, 69));
 
         date.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
         date.setForeground(new java.awt.Color(255, 0, 0));
         date.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         date.setText("DATE");
+        jPanel5.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(785, 82, 255, 43));
 
         time.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
         time.setForeground(new java.awt.Color(255, 0, 0));
         time.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         time.setText("TIME");
         time.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jPanel5.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(785, 205, 255, 43));
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 153, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("TIME");
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(793, 143, 247, 43));
 
         q_client.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
         q_client.setForeground(new java.awt.Color(255, 0, 0));
         q_client.setText("Client");
+        jPanel5.add(q_client, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 192, 356, 69));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(sb_num, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(q_client, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(time, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42))))))
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(window, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(302, Short.MAX_VALUE)))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sb_num, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(q_client, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(window, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(181, Short.MAX_VALUE)))
-        );
+        Main.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 1054, 273));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -809,6 +785,11 @@ public class Main extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(51, 0, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/history.png"))); // NOI18N
         jButton4.setText("HISTORY");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         fwd_btn.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         fwd_btn.setForeground(new java.awt.Color(51, 0, 255));
@@ -847,31 +828,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout MainLayout = new javax.swing.GroupLayout(Main);
-        Main.setLayout(MainLayout);
-        MainLayout.setHorizontalGroup(
-            MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(MainLayout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1054, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        MainLayout.setVerticalGroup(
-            MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        Main.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 11, -1, -1));
 
         jPanel1.add(Main, "card2");
 
@@ -1021,6 +978,124 @@ public class Main extends javax.swing.JFrame {
 
         jPanel1.add(Sadmin, "card4");
 
+        history.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setGridColor(new java.awt.Color(153, 255, 255));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTable1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTable1MouseExited(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
+        history.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 1335, 470));
+
+        jButton5.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(51, 0, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/reque.png"))); // NOI18N
+        jButton5.setText("Re-Que");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton5MouseExited(evt);
+            }
+        });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        history.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 180, 220, 70));
+
+        jButton6.setFont(new java.awt.Font("Arial Black", 1, 22)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(51, 0, 255));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/reserve.png"))); // NOI18N
+        jButton6.setText("Re-serve");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton6MouseExited(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        history.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 100, 220, 70));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("jLabel3");
+        history.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 26, 154, -1));
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("jLabel5");
+        history.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 67, 190, -1));
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("jLabel6");
+        history.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 162, 190, -1));
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("jLabel8");
+        history.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 121, 190, -1));
+
+        jButton7.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(51, 0, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/back.png"))); // NOI18N
+        jButton7.setText("Back");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton7MouseExited(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        history.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 20, 220, 70));
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        history.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, 320, 30));
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        history.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(784, 50, 320, 30));
+
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        history.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 130, 320, 30));
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        history.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 194, 420, 40));
+
+        jPanel1.add(history, "card6");
+
         fwd.setText("forward");
 
         prio.setText("prio");
@@ -1137,8 +1212,10 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(1, sb_num.getText());
                     pst.setString(2, date.getText());
                     pst.setString(3, time.getText());
-
+                    
                     pst.execute();
+                    
+                    intohistory();
                     
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM assessment_tbl WHERE "
                             + "Assessment_num = '" + sb_num.getText() + "'");
@@ -1165,6 +1242,8 @@ public class Main extends javax.swing.JFrame {
 
                     pst.execute();
                     
+                    intohistory();
+                    
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM assessment_tbl WHERE "
                             + "Assessment_num = '" + sb_num.getText() + "'");
                     int del = pst.executeUpdate();
@@ -1189,6 +1268,8 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, time.getText());
 
                     pst.execute();
+                    
+                    intohistory();
                     
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM assessment_tbl WHERE "
                             + "Assessment_num = '" + sb_num.getText() + "'");
@@ -1216,6 +1297,8 @@ public class Main extends javax.swing.JFrame {
 
                     pst.execute();
                     
+                    intohistory();
+                    
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM cashier_tbl WHERE "
                             + "Cashier_num = '" + sb_num.getText() + "'");
                     int del = pst.executeUpdate();
@@ -1241,6 +1324,8 @@ public class Main extends javax.swing.JFrame {
 
                     pst.execute();
                     
+                    intohistory();
+                    
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM cashier_tbl WHERE "
                             + "Cashier_num = '" + sb_num.getText() + "'");
                     int del = pst.executeUpdate();
@@ -1265,6 +1350,8 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, time.getText());
 
                     pst.execute();
+                    
+                    intohistory();
                     
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM encoding_tbl WHERE "
                             + "Encoding_num = '" + sb_num.getText() + "'");
@@ -1292,6 +1379,8 @@ public class Main extends javax.swing.JFrame {
 
                     pst.execute();
                     
+                    intohistory();
+                    
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM encoding_tbl WHERE "
                             + "Encoding_num = '" + sb_num.getText() + "'");
                     int del = pst.executeUpdate();
@@ -1316,6 +1405,8 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, time.getText());
 
                     pst.execute();
+                    
+                    intohistory();
                     
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM encoding_tbl WHERE "
                             + "Encoding_num = '" + sb_num.getText() + "'");
@@ -1342,6 +1433,8 @@ public class Main extends javax.swing.JFrame {
 
                     pst.execute();
                     
+                    intohistory();
+                    
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM marine_tbl WHERE "
                             + "Marine_num = '" + sb_num.getText() + "'");
                     int del = pst.executeUpdate();
@@ -1366,6 +1459,8 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, time.getText());
 
                     pst.execute();
+                    
+                    intohistory();
                     
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM terminal_tbl WHERE "
                             + "Terminal_num = '" + sb_num.getText() + "'");
@@ -1392,6 +1487,8 @@ public class Main extends javax.swing.JFrame {
 
                     pst.execute();
                     
+                    intohistory();
+                    
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM ad_tbl WHERE "
                             + "Ad_num = '" + sb_num.getText() + "'");
                     int del = pst.executeUpdate();
@@ -1417,6 +1514,8 @@ public class Main extends javax.swing.JFrame {
 
                     pst.execute();
                     
+                    intohistory();
+                    
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM fd_tbl WHERE "
                             + "Fd_num = '" + sb_num.getText() + "'");
                     int del = pst.executeUpdate();
@@ -1441,6 +1540,8 @@ public class Main extends javax.swing.JFrame {
 
                     pst.execute();
                     
+                    intohistory();
+                    
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM opm_tbl WHERE "
                             + "Opm_num = '" + sb_num.getText() + "'");
                     int del = pst.executeUpdate();
@@ -1464,6 +1565,8 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, time.getText());
 
                     pst.execute();
+                    
+                    intohistory();
                     
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM psd_tbl WHERE "
                             + "Psd_num = '" + sb_num.getText() + "'");
@@ -1490,6 +1593,8 @@ public class Main extends javax.swing.JFrame {
 
                     pst.execute();
                     
+                    intohistory();
+                    
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM ppd_tbl WHERE "
                             + "Ppd_num = '" + sb_num.getText() + "'");
                     int del = pst.executeUpdate();
@@ -1514,6 +1619,8 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(3, time.getText());
 
                     pst.execute();
+                    
+                    intohistory();
                     
                     pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("DELETE FROM esd_tbl WHERE "
                             + "Esd_num = '" + sb_num.getText() + "'");
@@ -1620,6 +1727,650 @@ public class Main extends javax.swing.JFrame {
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Login.setVisible(false);
+        Sadmin.setVisible(false);
+        Main.setVisible(false);
+        history.setVisible(true);
+        
+         try {
+           String sql = "SELECT Queu_Num, Client, Date, Time"
+                    + " FROM history_tbl WHERE "
+                    + "Window like ? ";
+
+            pst = (com.mysql.jdbc.PreparedStatement) (java.sql.PreparedStatement) conn.prepareStatement(sql);
+            pst.setString(1, "%" + window.getText() + "%");
+
+            rs = (ResultSet) pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (SQLException ex) {
+            JOptionPane.showConfirmDialog(null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if(jLabel3.getText().equals("") || jLabel5.getText().equals("") || jLabel6.getText()
+                .equals("") || jLabel8.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Please Select From the table");
+        }
+        else{
+            
+            sb_num.setText(jLabel3.getText());
+            q_client.setText(jLabel5.getText());
+            
+            switch (window.getText()) {
+                
+                case "ASSESSMENT 1":
+                    
+                    try {
+                    String sql = "Insert into dis_asse1_tbl (Assessment_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+                    
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "ASSESSMENT 2":
+                    
+                    try {
+                    String sql = "Insert into dis_asse2_tbl (Assessment_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "ASSESSMENT 3":
+                    
+                    try {
+                    String sql = "Insert into dis_asse3_tbl (Assessment_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+            
+                case "CASHIER 1":
+                    
+                    try {
+                    String sql = "Insert into dis_cash1_tbl (Cashier_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+            
+                case "CASHIER 2":
+                    
+                    try {
+                    String sql = "Insert into dis_cash2_tbl (Cashier_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+
+                case "ENCODING 1":
+                    
+                    try {
+                    String sql = "Insert into dis_enco1_tbl (Encoding_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                
+                case "ENCODING 2":
+                    
+                    try {
+                    String sql = "Insert into dis_enco2_tbl (Encoding_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "ENCODING 3":
+                    
+                    try {
+                    String sql = "Insert into dis_enco3_tbl (Encoding_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "MARINE":
+
+                    try {
+                    String sql = "Insert into dis_marn_tbl (Marine_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "TERMINAL":
+                    
+                    try {
+                    String sql = "Insert into dis_term_tbl (Terminal_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "AD-Records":
+                    
+                    try {
+                    String sql = "Insert into dis_ad_tbl (Ad_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "FD-Disbursement":
+                    
+                    try {
+                    String sql = "Insert into dis_fd_tbl (Fd_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "OPM-Permits":
+                    
+                    try {
+                    String sql = "Insert into dis_opm_tbl (Opm_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "PSD-Safety":
+                    
+                    try {
+                    String sql = "Insert into dis_psd_tbl (Psd_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "PPD":
+                    
+                    try {
+                    String sql = "Insert into dis_ppd_tbl (Ppd_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+                    
+                case "ESD":
+                    
+                    try {
+                    String sql = "Insert into dis_esd_tbl (Esd_num, Date, Time) values (?,?,?)";
+
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, date.getText());
+                    pst.setString(3, time.getText());
+
+                    pst.execute();
+                    pst.close();
+                    }
+                    catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                    }
+                    break;
+
+            }
+            
+        Login.setVisible(false);
+        Sadmin.setVisible(false);
+        Main.setVisible(true);
+        history.setVisible(false);
+        } 
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if(jLabel3.getText().equals("") || jLabel5.getText().equals("") || jLabel6.getText()
+                .equals("") || jLabel8.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Please Select From the table");
+        }
+        else{
+            
+            sb_num.setText(jLabel3.getText());
+            q_client.setText(jLabel5.getText());
+            
+            switch (window.getText()) {
+                
+                case "ASSESSMENT 1":
+                    
+                    try{
+                    String sql = "Insert into assessment_tbl (Assessment_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "ASSESSMENT 2":
+                    
+                    try{
+                    String sql = "Insert into assessment_tbl (Assessment_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "ASSESSMENT 3":
+                    
+                    try{
+                    String sql = "Insert into assessment_tbl (Assessment_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+            
+                case "CASHIER 1":
+                    
+                    try{
+                    String sql = "Insert into cashier_tbl (Cashier_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+            
+                case "CASHIER 2":
+                    
+                    try{
+                    String sql = "Insert into cashier_tbl (Cashier_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+
+                case "ENCODING 1":
+                    
+                    try{
+                    String sql = "Insert into encoding_tbl (Encoding_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                
+                case "ENCODING 2":
+                    
+                    try{
+                    String sql = "Insert into encoding_tbl (Encoding_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "ENCODING 3":
+                    
+                    try{
+                    String sql = "Insert into encoding_tbl (Encoding_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "MARINE":
+
+                    try{
+                    String sql = "Insert into marine_tbl (Marine_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "TERMINAL":
+                    
+                    try{
+                    String sql = "Insert into terminal_tbl (Terminal_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "AD-Records":
+                    
+                    try{
+                    String sql = "Insert into ad_tbl (Ad_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "FD-Disbursement":
+                    
+                    try{
+                    String sql = "Insert into fd_tbl (Fd_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "OPM-Permits":
+                    
+                    try{
+                    String sql = "Insert into opm_tbl (Opm_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "PSD-Safety":
+                    
+                    try{
+                    String sql = "Insert into psd_tbl (Psd_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "PPD":
+                    
+                    try{
+                    String sql = "Insert into ppd_tbl (Ppd_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+                    
+                case "ESD":
+                    
+                    try{
+                    String sql = "Insert into esd_tbl (Esd_num, Client, Date, Time) values (?,?,?,?)";
+                    pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
+                    pst.setString(1, sb_num.getText());
+                    pst.setString(2, q_client.getText());
+                    pst.setString(3, date.getText());
+                    pst.setString(4, "R"+time.getText());
+                    pst.execute();
+                    pst.close();
+                    } catch (Exception e){
+                    }
+                    break;
+
+            }
+            sb_num.setText("####");
+            q_client.setText("Client");
+        Login.setVisible(false);
+        Sadmin.setVisible(false);
+        Main.setVisible(true);
+        history.setVisible(false);
+        } 
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int z = jTable1.getSelectedRow();
+
+            TableModel model = (TableModel)jTable1.getModel();
+          jLabel3.setText(model.getValueAt(z, 0).toString());
+          jLabel5.setText(model.getValueAt(z, 1).toString());
+          jLabel6.setText(model.getValueAt(z, 2).toString());
+          jLabel8.setText(model.getValueAt(z, 3).toString());
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Login.setVisible(false);
+        Sadmin.setVisible(false);
+        Main.setVisible(true);
+        history.setVisible(false);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
+        jLabel10.setText("Go back to main board");
+    }//GEN-LAST:event_jButton7MouseEntered
+
+    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
+        jLabel10.setText("");
+    }//GEN-LAST:event_jButton7MouseExited
+
+    private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
+        jLabel11.setText("Serve Selected row");
+    }//GEN-LAST:event_jButton6MouseEntered
+
+    private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
+        jLabel11.setText("");
+    }//GEN-LAST:event_jButton6MouseExited
+
+    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+        jLabel9.setText("Back to que Selected row");
+    }//GEN-LAST:event_jButton5MouseEntered
+
+    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
+        jLabel9.setText("");
+    }//GEN-LAST:event_jButton5MouseExited
+
+    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
+        jLabel12.setText("Please select row from the table");
+    }//GEN-LAST:event_jTable1MouseEntered
+
+    private void jTable1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseExited
+         jLabel12.setText("");
+    }//GEN-LAST:event_jTable1MouseExited
 
     public void fwd_cast(){
             switch (fwd.getText()) {
@@ -1884,6 +2635,8 @@ public class Main extends javax.swing.JFrame {
             pst.executeUpdate();
             pst = conn.prepareStatement("DELETE FROM `term_ticket` WHERE 1-1000");
             pst.executeUpdate();
+            pst = conn.prepareStatement("DELETE FROM `history_tbl` WHERE 1-1000");
+            pst.executeUpdate();
             
             String sql = "alter table ad_tbl AUTO_INCREMENT = 1";
             pst = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(sql);
@@ -2092,14 +2845,26 @@ public interface SimpleDocumentListener extends DocumentListener {
     private javax.swing.JLabel date;
     private javax.swing.JLabel fwd;
     private javax.swing.JButton fwd_btn;
+    private javax.swing.JPanel history;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -2109,6 +2874,8 @@ public interface SimpleDocumentListener extends DocumentListener {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField password;
     private javax.swing.JLabel prio;
